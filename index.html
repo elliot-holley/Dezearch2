@@ -39,16 +39,32 @@
   "image/x-icon">
 
   <title>Dezearch</title>
-  <style type="text/css">
-
+<style type="text/css">
 body {
- background: url(images/rotate.php) no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+ background: #000 url(light_forest.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
   }
   </style>
+  <script type="text/javascript">
+    (function() {
+      var pics = [
+        'images/data_analysis_numbers.jpg',
+        'images/eyes.jpg',
+        'images/girl_one.jpg',
+        'images/programming.jpg',
+        'images/twins.jpg',
+        'images/weld_action_4.jpg',
+        'images/weld_action_5.jpg'
+      ];
+      var choice = pics[Math.floor(Math.random() * pics.length)];
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.backgroundImage = 'url(' + choice + ')';
+      });
+    })();
+  </script>
 </head>
 
 <body>
