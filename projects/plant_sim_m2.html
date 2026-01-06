@@ -95,24 +95,41 @@ body {
   </div><span id="pagewidth_movies"></span>
 
   <div id="movie_pos">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-    codebase=
-    "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"
-    width="480" height="360" id="VideoPlayer" align="middle">
-      <param name="allowScriptAccess" value="*">
-      <param name="allowFullScreen" value="true">
-      <param name="movie" value=
-      "http://www.dezearch.com/movies/FLVPlayer.swf?video=http://www.dezearch.com/movies/plant_sim_06146.flv&autoplay=true">
-      <param value="high">
-      <param name="bgcolor" value="#ffffff">
-      <embed src=
-      "http://www.dezearch.com/movies/FLVPlayer.swf?video=http://www.dezearch.com/movies/plant_sim_06146.flv&autoplay=true"
-      quality="high" bgcolor="#000000" width="480" height="360" name=
-      "VideoPlayer" align="middle" allowscriptaccess="*"
-      allowfullscreen="true" type="application/x-shockwave-flash"
-      pluginspage="http://www.macromedia.com/go/getflashplayer">
-    </object>
+    <video id="project-video" width="480" height="360" controls preload="metadata" playsinline poster="../oimages/sbplant_sim_06146.jpg"></video>
   </div><img src="../oimages/neural.jpg" class="hiddenpic" alt=
   "Neural Net">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
+  <script>
+    (function() {
+      var video = document.getElementById('project-video');
+      var mp4 = '../movies/plant_sim_06146.mp4';
+      var flv = '../movies/plant_sim_06146.flv';
+
+      function loadMp4() {
+        var source = document.createElement('source');
+        source.src = mp4;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+      }
+
+      function loadFlv() {
+        if (window.flvjs && window.flvjs.isSupported()) {
+          var player = window.flvjs.createPlayer({ type: 'flv', url: flv });
+          player.attachMediaElement(video);
+          player.load();
+        } else {
+          video.insertAdjacentHTML('afterend', '<p><a href="' + flv + '">Download the video</a></p>');
+        }
+      }
+
+      video.addEventListener('error', function() {
+        video.innerHTML = '';
+        loadFlv();
+      }, { once: true });
+
+      loadMp4();
+    })();
+  </script>
 </body>
 </html>
