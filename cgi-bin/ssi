@@ -1,0 +1,36 @@
+#!/usr/bin/perl -w 
+use CGI qw(:standard);
+use CGI::Carp qw(fatalsToBrowser);
+use strict;
+
+my $exclusive_lock = 2;
+my $unlock = 8;
+my $file_path = "/home/polarbear/web/dezearch";
+
+&main;
+
+sub main
+{
+    my $form_file = $ENV{'PATH_INFO'};
+    pseudo_ssi($form_file, "none");
+    exit(0);
+}
+
+
+sub pseudo_ssi
+{
+    my ($file, $cname) = @_;     # web page path info and cookie id
+    my ($fname);
+    $fname = $file_path . $file;
+    open (FILE, "<" . $fname) or
+	die("Cannot open file at `$fname'");
+    flock (FILE, $exclusive_lock);
+    print "Content-type: text/html\n";
+    print "Expires: Thu, 29 Oct 1998 17:04:19 GMT","\n\n";
+    while (<FILE>) {
+	    print;
+	    }
+    flock (FILE, $unlock);
+    close (FILE);
+}
+

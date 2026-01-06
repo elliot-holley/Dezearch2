@@ -1,0 +1,5 @@
+AuthName "My access authfile"
+AuthType Basic
+AuthUserFile /home/htdocs/hosted/susannah/dezearch.com/.ds/.htusers
+
+require valid-user

@@ -1,0 +1,280 @@
+/* body, html - Sets type size, font, line-height */
+
+body, html
+{
+    color: #000000;
+    /* font-size: 13px;  */
+    font-family: "Georgia","Times New Roman",Times,serif;
+    font-size: 90%;
+    line-height: 15px;
+    background-repeat: no-repeat;
+    margin: 0px 0px 0px 0px;
+    /* margin:0 auto; This works, but only for the back ground*/
+    /* width: 1280; (together with this) */
+}
+
+/* Pagewidth is the translucent white square */
+#pagewidth
+{
+    width: 380px;
+    height: 370px;  
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    padding: 15px 15px 15px 15px; /*  top, right, bot, left */ 
+    background-color:#ffffff; 
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;  
+}
+
+#clear_block
+{
+    width: 380px;
+    height: 370px;  
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    padding: 15px 15px 15px 15px; /*  top, right, bot, left */ 
+
+}
+
+#misty_block
+{
+    width: 406px;
+    height: 400px;  
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    background-color:#ffffff; 
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;  
+}
+
+/* logobox contains the Dezearch logo */
+#logobox
+{
+  height: 70px;	
+  width: 376px;
+}
+
+#right_column
+{
+    position: absolute; 
+    top: 85px;
+    left: 160px;
+    width: 210px;
+    height: 300px; 
+    float: left;  
+    display:inline; 
+    margin: 0px 0px 0px 0px;
+    color: #000000; 
+}
+
+#left_column
+{
+    position: absolute; 
+    top: 85px;
+    left: 15px;
+    width:200px;
+    height: 300px;
+    float: left;  
+    display:inline; 
+    margin: 0px 0px 0px 0px;
+    color: #000000; 
+}
+
+#bottom_right
+{	
+    position:absolute;
+    top: 325px;
+    left: 160px;
+    width: 200px; 
+    height: 100px;
+    float: left; 
+    display: inline; 
+    margin: 0px 0px 0px 0px; 
+    color: #000000; 
+}
+
+#bottom_right_skills
+{	
+    position:absolute;
+    top: 302px;
+    left: 160px;
+    width:150px; 
+    height: 100px;
+    float: left;
+    display:inline; 
+    margin: 0px 0px 0px 0px; 
+    color: #000000; 
+}
+
+#movie_bw
+{
+    position: absolute;
+    width: 406px;
+    height: 114px;  
+    top: 440px;
+    left: 30px;
+    background-color:#ffffff; 
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;  
+}
+
+#mtable_bg
+{
+    position: absolute;
+    top: 440px;
+    left: 30px;
+}
+
+/* Pagewidth_movies is the translucent movie background */
+#pagewidth_movies
+{
+    width: 520px;
+    height: 400px;  
+    position: absolute;
+    top: 30px;
+    left: 455px;
+    background-color:#ffffff; 
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5; 
+}
+
+#movie_pos
+{
+    position: absolute; 
+    top: 35px;
+    left: 460px;  
+    display:inline; 
+/*    background-color:#ffff00; */
+    padding: 15px 15px 15px 15px; 
+    color: #000000;  
+}
+
+#movie_box
+{	
+    width:380px; 
+    height: 80px; 
+    float:left; 
+    display:inline; 
+    position:relative;
+    padding: 0px 0px 0px 0px; 
+    margin: 0px 00px 0px 0px; 
+    color: #000000;  
+}
+
+
+#space
+{
+    height: 150px;
+}
+
+p{
+    margin-bottom: 8px;
+    margin-top: 0px;
+}
+
+p{
+    margin-bottom: 8px;
+    margin-top: 0px;
+}
+
+#pagewidth_form p{
+    margin: 0px 0px 14px 0px;
+}
+
+img{
+    border: none;
+}
+
+.grey_text{ 
+    color: #666666; 
+}
+
+.bottom{
+    position: absolute;
+    bottom: 8px;
+    color: #000000; 
+}
+
+.bottom p{
+    margin-bottom: 0px;
+    margin-top: 8px;
+}
+
+.space{
+    margin: 0px 10px 0px 10px;
+}
+
+/* hiddenpic is for preloading images */
+.hiddenpic{display:none;}
+
+h3{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+h4{
+    color: #333333;
+    padding: 0px 0px 0px 0px;
+    margin: 4px 0px 12px 0px;
+}
+
+textarea{
+    margin: 5px 0px 0px 0px;
+    overflow: hidden;
+}
+
+/* *** Float containers fix:
+   http://www.csscreator.com/attributes/containedfloat.php *** */ 
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix{display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */ 
+
+/* a:link {color: #666; text-decoration: none;} */
+a:link {color: #000; text-decoration: none;} 
+a:visited {color: #666; text-decoration: none;}
+a:hover {color: #999; text-decoration: none;}
+a:active {color: #999; text-decoration: none;}
+
+#left_column a:link {color: #000; text-decoration: none;}
+#left_column a:visited {color: #000; text-decoration: none;}
+#left_column a:hover {color: #ff0000; text-decoration: none;}
+#left_column a:active {color: #999; text-decoration: none;}
+
+#bottom_right a:link {color: #000; text-decoration: none;}
+#bottom_right a:visited {color: #000; text-decoration: none;}
+#bottom_right a:hover {color: #ff0000; text-decoration: none;}
+#bottom_right a:active {color: #000; text-decoration: none;}
+
+#bottom_right_skills a:link {color: #000; text-decoration: none;}
+#bottom_right_skills a:visited {color: #000; text-decoration: none;}
+#bottom_right_skills a:hover {color: #ff0000; text-decoration: none;}
+#bottom_right_skills a:active {color: #000; text-decoration: none;}
+
+a.black:link {color: #000; text-decoration: none;}
+a.black:visited {color: #000; text-decoration: none;}
+a.black:hover {color: #999; text-decoration: none;}
+a.black:active {color: #999; text-decoration: none;}
+.red_text a:link {color: #FF0000;}
+.red_text a:visited {color: #FF0000;}
+.red_text a:hover {color: #999; text-decoration: none;}
+.red_text a:active {color: #999; text-decoration: none;}
+
+

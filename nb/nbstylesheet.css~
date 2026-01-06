@@ -1,0 +1,198 @@
+/* body, html - Sets type size, font, line-height */
+
+body, html
+{
+	color: #333333;
+	font-size: 13px;
+	font-family: "Georgia","Times New Roman",Times,serif;
+	line-height: 15px;
+	background-repeat: no-repeat;
+	margin: 0px 0px 0px 0px;
+}
+
+/* Pagewidth is the translucent white square */
+#pagewidth
+{
+	width: 370px;
+	height: 370px;
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	padding: 15px 20px 15px 15px; 
+	background-color:#ffffff;
+	opacity: 0.9;
+}
+
+#pagewidth_form
+{
+	width: 370px;
+	height: 370px;
+	color: #666666;
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	padding: 20px 20px 20px 20px; 
+	background-color:#ffffff;
+	opacity: 0.9;
+}
+
+/* Pagewidth is the translucent white square */
+#pagewidth_recruitment
+{
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 30px;
+	left: 380px;
+	background: url(images/recruit_sticker.png);
+}
+
+#recruitment
+	{	
+	width:170px; 
+	height: 370px;
+	float:left; 
+	display:inline; 
+	position:relative;
+	margin: 0px 0px 0px 0px; 
+	color: #333333; 
+	}
+
+#recruitment_2
+	{	
+	width:170px; 
+	height: 370px;
+	float:right; 
+	display:inline; 
+	position:relative;
+	margin: 0px 0px 0px 0px; 
+	color: #333333; 
+	}
+/* Pagewidth_movie is the adjacent area for movie clips*/
+#pagewidth_movie
+{
+	height: 370px;
+	width: 439px;
+	position: absolute;
+	top: 30px;
+	left: 455px;
+	padding: 15px 15px 15px 15px;
+	background-color:#ffffff;
+	opacity: 0.9;
+	}
+
+/* leftcol contains contact information */
+#leftcol
+	{	
+	width:150px; 
+	height: 370px;
+	float:left; 
+	display:inline; 
+	position:relative;
+	margin: 0px 0px 0px 0px; 
+	color: #333333; 
+	}
+
+#maincol
+	{
+	width:200px;
+	height: 370px;
+	float: right; 
+ 	display:inline; 
+ 	position: relative;
+ 	margin: 0px 0px 0px 0px;
+	}
+
+/* logobox contains the NB: Studio logo */
+
+#logobox
+	{
+	height: 25px;
+	}
+
+p{
+	margin-bottom: 8px;
+	margin-top: 0px;
+	}
+
+#pagewidth_form p{
+margin: 0px 0px 14px 0px;
+}
+
+img{
+	border: none;
+	}
+
+.grey_text{ 
+	color: #666666; 
+	}
+
+.bottom{
+	position: absolute;
+	bottom: 0px;
+	color: #666666; 
+	}
+	
+.bottom p{
+margin-bottom: 0px;
+margin-top: 8px;
+}
+
+.space{
+	margin: 0px 10px 0px 10px;
+	}
+
+/* hiddenpic is for preloading images */
+.hiddenpic{display:none;}
+
+h3{
+padding: 0px 0px 0px 0px;
+margin: 0px 0px 0px 0px;
+}
+
+h4{
+color: #333333;
+padding: 0px 0px 0px 0px;
+margin: 4px 0px 12px 0px;
+}
+
+textarea{
+margin: 5px 0px 0px 0px;
+overflow: hidden;
+}
+	
+/* *** Float containers fix:
+ http://www.csscreator.com/attributes/containedfloat.php *** */ 
+.clearfix:after {
+ content: "."; 
+ display: block; 
+height: 0; 
+ clear: both; 
+ visibility: hidden;
+ }
+ 
+.clearfix{display: inline-table;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */ 
+
+a:link {color: #666; text-decoration: none;}
+a:visited {color: #666; text-decoration: none;}
+a:hover {color: #999; text-decoration: none;}
+a:active {color: #999; text-decoration: none;}
+
+#leftcol a:link {color: #333; text-decoration: none;}
+#leftcol a:visited {color: #333; text-decoration: none;}
+#leftcol a:hover {color: #999; text-decoration: none;}
+#leftcol a:active {color: #999; text-decoration: none;}
+
+a.black:link {color: #000; text-decoration: none;}
+a.black:visited {color: #000; text-decoration: none;}
+a.black:hover {color: #999; text-decoration: none;}
+a.black:active {color: #999; text-decoration: none;}
+.red_text a:link {color: #FF0000;}
+.red_text a:visited {color: #FF0000;}
+.red_text a:hover {color: #999; text-decoration: none;}
+.red_text a:active {color: #999; text-decoration: none;}

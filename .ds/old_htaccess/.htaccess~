@@ -1,0 +1,5 @@
+AuthName "Local host"
+AuthType Basic
+AuthUserFile /localhost/.ds/.htusers
+
+require valid-user

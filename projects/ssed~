@@ -1,0 +1,25 @@
+#!/usr/bin/perl -w 
+use strict;
+
+my ($dir) = @_;
+my @files = glob "*.html";
+my $fl;
+foreach my $efile (@files) {
+    open(FILE, "<" . $efile);
+    while(<FILE>) {
+	s/ppc\_trans\.jpg/plant\_sim\.jpg/;
+	s/\/6<\/span>/\/7<\/span>/;
+	#s/plating_plant/plant_sim/;
+        #s/localhost/www\.cloudsandangels\.com/;
+	 $fl .= $_;
+    }
+    print $fl;
+    close FILE;
+    open(FILE, ">" . $efile);
+    print FILE $fl;
+    $fl ="";
+#    print $fl;
+    close FILE;
+}
+exit(0)
+

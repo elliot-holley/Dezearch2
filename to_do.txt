@@ -1,0 +1,24 @@
+Dezearch Web Pages.
+
+- Select a different stylesheet depending on the browser.
+- Edit plating plant screen movie to remove the wobbly start.
+- Change the play icon on the thumb nails or remove?
+- Add pre-loading of movie clip thumbnails.
+- Flash sometimes doesn't work, fails to download the correct version.
+- Change flash player to remove silly loading circle.
+- There's enough photos and movies to add the base welder to the
+  projects file.
+- Justified text in the description box.
+- Better descriptions within the projects.
+- Split site up into scientific research and applied (industrial).
+- I need a search and replace script that searches all the directories
+  with html files.
+- Change the favicon to the red `Z' from Dezearch as the logo does
+  note show up very well as an icon. Or improve the favicon resolution.
+- logo_box has no assignment in the stylesheet, there it is logobox.
+-------------------
+
+New pages.
+
+- Applications programming.
+- Reporting.

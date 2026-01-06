@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<title>NB: Studio +44[0]20 7633 9046</title>
+	<meta name="generator" content="BBEdit 8.2"/>
+	<link rel="stylesheet" href="nbstylesheet.css" type="text/css" title="nbstylesheet"/>
+	<meta name="description" content="NB: Studio is a graphic design consultancy based in London."/>
+	<meta name="keywords" content="nb studio, design, graphics, print, web, website, identity, identities, logo, logos, consultancy, printing, multi-media, reports, concept, concepts, conceptual, advertising, agency, collateral, packaging, communicate, communications, problem solving, innovation, multidisciplinary, nb, knoll, ideas, pentagram, Ben Stott, Alan Dye, Nick Finney"/>
+
+	<link rel="icon" href="http://www.nbstudio.co.uk/nbicon.ico"/>
+	<link rel="shortcut icon" href="http://www.nbstudio.co.uk/nbicon.ico"/>
+	<script language="JavaScript">
+<!--
+// This will resize the window when it is opened or
+// refresh/reload is clicked to a width and height of 1200 x 950
+// width is placed first, height is placed second
+window.resizeTo(1200,950)
+-->
+</script>
+</head>
+	
+<body background="random_images/rotate.php">
+
+<div id="pagewidth">
+<!-- Leftcol: NB Contact Information -->
+<div id="leftcol">
+<div id="logobox">
+<a href="http://www.nbstudio.co.uk"><img src="images/logoblack.gif" alt="NB: Studio"/></a>
+</div>
+
+<p>4&mdash;8 Emerson Street
+<br />London SE1 9DU
+<br />+44[0]20 7633 9046
+<br /><a href="mailto:mail@nbstudio.co.uk">mail@nbstudio.co.uk</a></p>
+</div>
+			
+<!-- Maincol:  Main text column -->
+<div id="maincol"> 
+<div id="logobox"></div>
+<p>We are a multi-disciplinary graphic design consultancy, founded in 1997, based in Bankside, London.</p>
+<p class="grey_text">Please contact us if you would like to see our portfolio or find out more about our work.</p>
+<p>&mdash;</p>
+<p><a href="thisyear/index.html">This year...</a></p>
+
+<div class="bottom">
+<p><a href="pages/recent_projects/recent_project_1.html">Recent Projects</a>
+<br /><a href="pages/archive_pages/project22.html">Archive</a>
+<br /><a href="pages/also/also1.html">Also</a></p>
+</div>
+</div>		
+</div>
+
+<!-- Preload all menu images -->
+<img src="pages/also/also_images/also_1.jpg" class="hiddenpic">
+<img src="pages/also/also_images/also_2.jpg" class="hiddenpic">
+
+<!-- Preload first Recent Project images -->
+
+<img src="pages/recent_projects/recent_project_images/recent_project_1.jpg" class="hiddenpic">
+
+<!-- Preload first Archive Project images -->
+<img src="pages/archive_pages/project_images/soho_house.jpg" class="hiddenpic">
+
+<!-- Preload first Archive Project images -->
+<img src="thisyear/images/this_year_2009_intro.jpg" class="hiddenpic">
+
+<!-- End of Preload -->
+
+</body>
+</html>

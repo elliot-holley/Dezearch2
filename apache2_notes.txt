@@ -1,0 +1,7 @@
+This is apache2 not httpd, so
+
+ - runs as apache2 not httpd
+ - documentroot is in file /etc/apache2/sites-available/default 
+ - start with apache2ctl start 
+
+

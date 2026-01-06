@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w 
+use strict;
+
+my ($dir) = @_;
+my @files = glob "*.html";
+my $fl;
+foreach my $efile (@files) {
+    open(FILE, "<" . $efile);
+    while(<FILE>) {
+	#s/localhost/www\.dezearch\.com/;
+	s/www\.dezearch\.com/localhost/;
+	 $fl .= $_;
+    }
+    print $fl;
+    close FILE;
+    open(FILE, ">" . $efile);
+    print FILE $fl;
+    $fl ="";
+#    print $fl;
+    close FILE;
+}
+exit(0)
+

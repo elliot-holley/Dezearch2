@@ -1,0 +1,8 @@
+AuthUserFile /home/redbear/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Visit Information"
+AuthType Basic
+
+<Limit GET POST> 
+require valid-user
+</Limit>

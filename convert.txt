@@ -1,0 +1,20 @@
+0 - tidy buffer 
+1  (L31) - replace <div id="pagewidth">
+
+with   <div id="misty_block"></div><div id="clear_block">
+
+2 - (L38) replace <div id="leftcol">
+
+with <div id="left_column">
+
+3 - (L48) replace <div id="maincol">
+
+with <div id="right_column">
+
+4 - (L58) replace <div id="botright_skills">
+
+with </div> <div id="bottom_right_skills">
+
+5 - (L66) remove </div>
+
+6 - tidy buffer and save.

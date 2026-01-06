@@ -1,0 +1,288 @@
+#!/usr/bin/perl -wT
+use CGI qw(:standard);
+use strict;
+
+BEGIN {
+    use CGI::Carp qw(carpout);
+    #unlink("/home/polarbear/web/dezearch/.ds/activity_log");
+    #open(LOG, ">>/home/polarbear/web/dezearch/.ds/activity_log")
+    open(LOG, ">>../.ds/activity_log")
+        or die "Unable to append to log: $!\n";
+    carpout(*LOG);
+}
+
+my $exclusive_lock = 2;
+my $unlock = 8;
+my $home_cookie_name = "home_access_cookie";
+
+
+
+my $webmaster = "holley\@iee.org";
+my @user_params = ("createdate", "host", "address", "agent", "visits",
+		   "visitdate");  
+
+# change comments for upload version in this block.
+# -------------------------------------------------- #
+
+#my $cookie_path = "/home/polarbear/web/dezearch/.ds/";
+#my $hits_path = "/home/polarbear/web/dezearch/";
+#my $my_ip = "127.0.0.1";
+
+my $cookie_path = "../.ds/";
+my $hits_path = "../";
+my $my_ip = "193.203.240.199"; # home ip
+
+# -------------------------------------------------- #
+
+&main;
+
+sub main 
+{
+    activity_log();
+    my $cookiename = "Dezearch";
+    my $cookie_id = cookie($cookiename);
+    my %istats;
+    my $ccookie = '';
+
+    if(!$cookie_id) {
+	$ccookie = new_cookie_name();             # make cookie name
+        issue_new_cookie($cookiename, $ccookie);  # issue to browser
+    } else {
+	$ccookie = clean_cookie($cookie_id);      # clean and untaint
+    }
+    if(cfile($ccookie)) {
+	%istats = get_details($ccookie);          # load existing data
+	update_stats(\%istats);                   # update changes
+    } else {
+	%istats = create_stats();                 # create stats
+    }
+
+    save_stats($ccookie, %istats);                # save all
+    visit_counter("vdata");
+    make_visit_html("hits.html", get_vcounter("vdata"));
+    exit(0);
+
+}
+
+# return ture is home cookie
+sub home_ip 
+{
+    my $cf = 0;
+    if($ENV{'REMOTE_ADDR'} eq $my_ip) {
+	$cf = 1;
+    }
+    return($cf);
+}
+
+
+# Check to see if corresponding cookie file exists.
+sub cfile
+{
+    my ($cname) = @_;
+    my $exist;
+    my $fname = $cookie_path . $cname;
+    if(-e $fname) { 
+	$exist = 1;
+    }
+    else {
+	$exist = 0;
+    }
+    return($exist);
+}
+
+sub update_stats
+{
+    my ($stats_ref) = @_;
+    $$stats_ref{'visits'} += 1;
+    $$stats_ref{'visitdate'} = get_date_time();
+}
+
+sub create_stats
+{
+    my %nstats;
+    $nstats{'createdate'} = get_date_time();
+    $nstats{'host'} = $ENV{'HTTP_HOST'};
+    $nstats{'address'} = $ENV{'REMOTE_ADDR'};
+    $nstats{'agent'} = $ENV{'HTTP_USER_AGENT'};
+    $nstats{'visits'} = 1;
+    $nstats{'visitdate'} = get_date_time();
+    return(%nstats);
+}
+
+sub save_stats
+{
+    my ($cname, %nstats) = @_;   # cookie id
+    my $fname = $cookie_path . $cname;
+    open(FILE, ">" . $fname) or 
+	die "Cannot open file $fname";
+    while((my $key, my $value) = each %nstats ) {
+	print FILE "$key = $value\n";
+    }
+    close(FILE);
+}
+
+
+# organise data in the description file into a hash table
+sub get_details
+{
+    my ($pfile) = @_;    # full path and name of input file to process
+    my %dt;
+    my $stemp = $_;
+    my $fname = $cookie_path . $pfile;
+    open(TFILE, "<" . $fname) or 
+	die "Could not open file $fname";
+    while(defined(my $tp = <TFILE>)) {
+	$_ = $tp;
+	chomp; 
+	s/#.*//;
+	s/^\s+//;
+	s/\s+$//;
+	next unless length;
+	my ($var, $value) = split(/\s*=\s*/,$_, 2);
+	$dt{$var} = $value;
+    }
+    close(TFILE);
+    $_ = $stemp;
+    return(%dt);
+}
+
+
+# Limit cookie length and check that only alpha numercial values are present.
+# Untaint the result.
+sub clean_cookie
+{
+    my ($cid) = @_;
+    my $oid;
+    $oid  = substr($cid,0,20);          # limit cookie value to 20 chars
+	if ($oid =~ /^([-\@\w.]+)$/) {  # only words, alpha & underscores 
+	    $cid = $1;                    # untaint data
+	} else {
+	    die "Bad data in '$oid'";     
+	}
+    return($cid);
+}
+
+sub issue_new_cookie
+{
+    my ($cookiename, $cookie_id) = @_; 
+    my $cookie = cookie(
+	-NAME    => $cookiename,
+	-VALUE   => $cookie_id,
+	-EXPIRES => "+2y",
+	);
+    print header(-COOKIE => $cookie),
+}
+
+
+# Update my activity log.
+sub activity_log
+{
+    my $ran_id = "ran from `" . $ENV{'HTTP_HOST'} . "' ` " . $ENV{'REMOTE_ADDR'} . "'";
+    warn $ran_id;
+}
+
+# Assign arbitary unique file name to associate with cookie
+# Should check that new cookie does not match an existing.
+# If this is my IP the always assign the same name.
+sub new_cookie_name
+{
+    my $tmp_cookie = '';
+    if($ENV{'REMOTE_ADDR'} eq $my_ip) { 
+	$tmp_cookie = $home_cookie_name;  # always the same at home
+    } else {
+	my $rvalue = int(rand(1000000) + 1000000);
+	$tmp_cookie = "id_$rvalue" . time;
+    }
+    return($tmp_cookie);
+}
+
+
+sub  get_vcounter
+{
+    my ($count_file_name) = @_;
+    my $number = 0;
+    my $fname = $cookie_path . $count_file_name;
+    if(-e $fname) {
+	open(VFILE, "<" . $cookie_path . $count_file_name) or 
+	    die "Cannot open file $fname";
+	$number = <VFILE>; 
+	close VFILE;
+    }
+    else { 
+	$number = 0; 
+    }
+    return($number);
+}
+
+
+sub visit_counter
+{
+    my ($count_file_name) = @_;
+    my $number = 0;
+    if($ENV{'REMOTE_ADDR'} eq $my_ip) { 
+	$count_file_name = "vdata_me";
+    }
+    my $fname = $cookie_path . $count_file_name;
+    if(-e $fname) {
+	open(VFILE, "<" . $cookie_path . $count_file_name) or 
+	    die "Cannot open file $fname";
+	flock(VFILE, $exclusive_lock);
+	    if(defined($number = <VFILE>)) {
+		$number++;
+	    }
+	flock(VFILE, $unlock);
+	close VFILE;
+    }
+    else { 
+	$number = 1; 
+    }
+    open(VFILE, ">" . $fname) or 
+	die "Cannot open file $fname";
+    print VFILE $number;
+    close VFILE;
+    return($number);
+}
+
+
+sub make_visit_html
+{
+    my ($count_file_html, $hits) = @_;
+    my $fname = $cookie_path . $count_file_html;
+
+    open(VFILE, ">" . $hits_path . $count_file_html) or 
+	die "Cannot open file $fname";
+    flock(VFILE, $exclusive_lock);
+
+    print VFILE start_html("Hits"), 
+    h1("Total hits = $hits"),
+    end_html();
+
+    flock(VFILE, $unlock);
+    close VFILE;    
+}
+
+
+sub get_date_time 
+{
+    my ($months, $weekdays, $ampm, $time_string);
+    $months = "January/Febraury/March/April/May/June/July/August/September/October/November/December";
+    $weekdays = "Sunday/Monday/Tuesday/Wednesday/Thursday/Friday/Saturday";
+    my ($sec, $min, $hour, $day, $nmonth, $year, $wday, $yday, $isdst) = localtime(time);
+    if ($hour > 12) {
+        $hour -= 12;
+        $ampm = "pm";
+    } else {
+        $ampm = "am";
+    }
+    if ($hour == 0) {
+	       $hour = 12;
+    }
+    $year += 1900;
+    my $week  = (split("/", $weekdays))[$wday];
+    my $month = (split("/", $months))[$nmonth];
+    $time_string = sprintf("%s, %s %s, %s - %02d:%02d:%02d %s", 
+                                $week, $month, $day, $year, 
+                                $hour, $min, $sec, $ampm);
+    return($time_string);
+}
+
