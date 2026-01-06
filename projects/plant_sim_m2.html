@@ -95,11 +95,41 @@ body {
   </div><span id="pagewidth_movies"></span>
 
   <div id="movie_pos">
-    <video width="480" height="360" controls preload="metadata" playsinline>
-      <source src="http://www.dezearch.com/movies/plant_sim_06146.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+    <video id="project-video" width="480" height="360" controls preload="metadata" playsinline poster="../oimages/sbplant_sim_06146.jpg"></video>
   </div><img src="../oimages/neural.jpg" class="hiddenpic" alt=
   "Neural Net">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
+  <script>
+    (function() {
+      var video = document.getElementById('project-video');
+      var mp4 = '../movies/plant_sim_06146.mp4';
+      var flv = '../movies/plant_sim_06146.flv';
+
+      function loadMp4() {
+        var source = document.createElement('source');
+        source.src = mp4;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+      }
+
+      function loadFlv() {
+        if (window.flvjs && window.flvjs.isSupported()) {
+          var player = window.flvjs.createPlayer({ type: 'flv', url: flv });
+          player.attachMediaElement(video);
+          player.load();
+        } else {
+          video.insertAdjacentHTML('afterend', '<p><a href="' + flv + '">Download the video</a></p>');
+        }
+      }
+
+      video.addEventListener('error', function() {
+        video.innerHTML = '';
+        loadFlv();
+      }, { once: true });
+
+      loadMp4();
+    })();
+  </script>
 </body>
 </html>

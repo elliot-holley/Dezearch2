@@ -102,5 +102,38 @@ body {
     </video>
   </div><img src="../oimages/neural.jpg" class="hiddenpic" alt=
   "Neural Net">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
+  <script>
+    (function() {
+      var video = document.getElementById('project-video');
+      var mp4 = '../movies/plant_sim_06145.mp4';
+      var flv = '../movies/plant_sim_06145.flv';
+
+      function loadMp4() {
+        var source = document.createElement('source');
+        source.src = mp4;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+      }
+
+      function loadFlv() {
+        if (window.flvjs && window.flvjs.isSupported()) {
+          var player = window.flvjs.createPlayer({ type: 'flv', url: flv });
+          player.attachMediaElement(video);
+          player.load();
+        } else {
+          video.insertAdjacentHTML('afterend', '<p><a href="' + flv + '">Download the video</a></p>');
+        }
+      }
+
+      video.addEventListener('error', function() {
+        video.innerHTML = '';
+        loadFlv();
+      }, { once: true });
+
+      loadMp4();
+    })();
+  </script>
 </body>
 </html>
